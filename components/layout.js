@@ -3,13 +3,18 @@ import Nav from './nav'
 
 
 const Layout = ({ children }) => (
-    <div>
+    <div className='main'>
         <Nav />
 
         {children}
+
         <style jsx>{`
-      
-    `}</style>
+            .main {
+                width: 60%;
+                border: 1px solid;
+                margin: 0 auto;
+            }
+        `}</style>
     </div>
 )
 

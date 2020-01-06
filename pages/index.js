@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from '../components/layout'
 
-const Home = (props) => (
+const Home = props => (
   <Layout>
     <Head>
       <title>Home</title>
@@ -31,7 +31,7 @@ Home.getInitialProps = async function() {
 
   console.log(`Show data fetched. Count: ${matches.length}`);
 
-  return matches;
+  return { matches };
 };
 
 

@@ -8,7 +8,7 @@ const Nav = () => (
         <Link href="/">
           <a>Home</a>
         </Link>
-      </li>
+      </li> 
     </ul>
 
     <style jsx>{`

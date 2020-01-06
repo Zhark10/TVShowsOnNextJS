@@ -1,24 +1,22 @@
 import React from 'react'
 import Head from 'next/head'
-import Nav from '../components/nav'
+import Layout from '../components/layout'
 
 const Home = () => (
-  <div>
+  <Layout>
     <Head>
       <title>Home</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <Nav />
-
-   <div>
-     some content
+    <div>
+      some content
    </div>
 
     <style jsx>{`
       
     `}</style>
-  </div>
+  </Layout>
 )
 
 export default Home

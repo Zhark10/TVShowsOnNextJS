@@ -11,7 +11,6 @@ const Layout = ({ children }) => (
         <style jsx>{`
             .main {
                 width: 60%;
-                border: 1px solid;
                 margin: 0 auto;
             }
         `}</style>

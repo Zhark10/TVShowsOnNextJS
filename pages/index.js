@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Layout from '../components/layout'
+import Link from 'next/link'
 
 const Home = props => (
   <Layout>
@@ -15,7 +16,9 @@ const Home = props => (
 
     {
       props.matches.map(match => (
-        <div key={match.title} className="match-item">{match.title}</div>
+        <Link href="/p/[id]" as={`/p/${match.title}`}>
+          <div key={match.title} className="match-item">{match.title}</div>
+        </Link>
       ))
     }
 
@@ -24,11 +27,13 @@ const Home = props => (
         font-size: 24px;
         font-weight: 700;
         text-align: center;
+        padding: 24px;
       }
       .match-item {
+        font-size: 18px;
         border: 1px solid rgba(0,0,0,.54);
-        margin: 12px 0;
-        padding: 12px;
+        margin: 4px 0;
+        padding: 24px;
         text-align: center;
         cursor: pointer;
         border-radius: 12px;

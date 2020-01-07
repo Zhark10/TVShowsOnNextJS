@@ -2,6 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router';
 import Head from 'next/head'
 import Layout from '../../components/layout'
+import fetch from 'isomorphic-unfetch';
 
 const Home = props => {
     const router = useRouter();

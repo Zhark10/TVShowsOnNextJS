@@ -17,8 +17,11 @@ const Home = props => (
 
     {
       props.matches.map(match => (
-        <Link href="/p/[id]" as={`/p/${match.title}`}>
-          <div key={match.title} className="match-item">{match.title}</div>
+        <Link key={match.title} href="/p/[id]" as={`/p/${match.title}`}>
+          <div className="match-item">{
+            match.title}
+            <img src={match.thumbnail} className="match-image" />
+          </div>
         </Link>
       ))
     }
@@ -38,6 +41,10 @@ const Home = props => (
         text-align: center;
         cursor: pointer;
         border-radius: 12px;
+      }
+      .match-image {
+        height: 64px;
+        width: 64px;
       }
       .match-item:hover {
         background-color: rgba(0,0,0,.12)

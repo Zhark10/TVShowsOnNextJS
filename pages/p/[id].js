@@ -2,9 +2,8 @@ import React from 'react'
 import { useRouter } from 'next/router';
 import Head from 'next/head'
 import Layout from '../../components/layout'
-import fetch from 'isomorphic-unfetch';
 
-const Home = props => {
+const Home = () => {
     const router = useRouter();
     return (
         <Layout>
@@ -41,15 +40,5 @@ const Home = props => {
         </Layout>
     )
 }
-
-Home.getInitialProps = async function () {
-    const res = await fetch('https://www.scorebat.com/video-api/v1/');
-    const matches = await res.json();
-
-    console.log(matches);
-
-    return { matches };
-};
-
 
 export default Home

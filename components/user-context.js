@@ -5,9 +5,11 @@ export const MatchContext = createContext(null);
 
 const MatchProvider = ({ children }) => {
     const [match, setCurrentMatch] = useState(null)
+    const [matches, setMatches] = useState(null)
 
     const store = {
         currentMatch: [match, setCurrentMatch],
+        allMatches: [matches, setMatches],
     }
 
     return (

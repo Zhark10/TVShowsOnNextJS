@@ -13,18 +13,16 @@ const Home = ({ TVShows }) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <Jumbotron fluid>
-      <Container fluid>
+    <Jumbotron>
         <h1 className="display-3">All shows</h1>
         <p className="lead">here are all the sports TV-shows</p>
-      </Container>
     </Jumbotron>
 
     <div className="cards">
       {
         TVShows.map(item => (
           <div key={item.show.id} className="cards-item">
-            <Card >
+            <Card>
               <CardImg src={(item.show.image && item.show.image.original) || defaultImage} alt="Card image cap" />
               <CardBody>
                 <CardTitle>{item.show.name}</CardTitle>
@@ -51,9 +49,10 @@ const Home = ({ TVShows }) => (
       .cards {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
       }
       .cards-item {
-        width: 20%;
+        width: 30%;
       }
     `}</style>
   </Layout>

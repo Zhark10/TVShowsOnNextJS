@@ -4,15 +4,26 @@ import Link from 'next/link'
 const Nav = () => (
   <nav>
     <ul>
-      <li>
+      <div>
         <Link href="/">
-          <a>Home</a>
+          <a>go to home</a>
         </Link>
-      </li> 
+      </div> 
     </ul>
 
     <style jsx>{`
-      
+      ul {
+        width: 100%;
+        height: 50px;
+        background-color: #e9ecef;
+        display: flex;
+        align-items: center;
+      }
+      ul div {
+        font-size: 24px;
+        color: rgba(0,0,0,0.54);
+        text-decoration: none;
+      }
     `}</style>
   </nav>
 )

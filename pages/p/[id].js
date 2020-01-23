@@ -13,6 +13,7 @@ const Show = () => {
     const getDataByShow = async () => {
       const res = await fetch(`http://api.tvmaze.com/shows/${router.query.id}`);
       const TVShow = await res.json();
+      console.log(TVShow)
       setShow(TVShow)
     }
     getDataByShow()
@@ -26,15 +27,27 @@ const Show = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Card>
-        <CardImg src={(show.image && show.image.original) || defaultImage} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>{show.name}</CardTitle>
-          <CardSubtitle>Category: {show.type}</CardSubtitle>
-          <CardText>Language: {show.language}</CardText>
-          <CardText>Official site: {show.officialSite}</CardText>
-        </CardBody>
-      </Card>
+      <div className="show-content">
+        <Card>
+          <CardImg src={(show.image && show.image.original) || defaultImage} alt="Card image cap" />
+          <CardBody>
+            <CardTitle>{show.name}</CardTitle>
+            <CardSubtitle>Category: {show.type}</CardSubtitle>
+            <CardText>Language: {show.language}</CardText>
+            <CardText>Premiered: {show.premiered}</CardText>
+            Time: {show.schedule.time}<br />
+            Days: {show.schedule.days.map(elem => <span>{elem},</span>)}<br />
+            <Button onClick={() => window.open(show.url)}>Official site</Button>
+          </CardBody>
+        </Card>
+      </div>
+
+      <style jsx>{`
+      .show-content {
+        width: 50%;
+        margin: 0 auto;
+      }
+    `}</style>
     </Layout>
   )
 }

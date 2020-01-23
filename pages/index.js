@@ -3,8 +3,7 @@ import Head from 'next/head'
 import Layout from '../components/layout'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch';
-import { Card, CardText, CardTitle, CardBody, Button, CardSubtitle, CardImg, Jumbotron, Container } from 'reactstrap';
-const defaultImage = 'https://kardelenguzellik.com/wp-content/uploads/2016/10/orionthemes-featured-image-2.jpg';
+import { Jumbotron, Badge, ListGroupItem, ListGroup } from 'reactstrap';
 
 const Home = ({ TVShows }) => (
   <Layout>
@@ -14,30 +13,22 @@ const Home = ({ TVShows }) => (
     </Head>
 
     <Jumbotron>
-        <h1 className="display-3">All shows</h1>
-        <p className="lead">here are all the sports TV-shows</p>
+      <h1 className="display-3">All shows</h1>
+      <p className="lead">here are all the sports TV-shows</p>
     </Jumbotron>
 
-    <div className="cards">
+    <ListGroup>
       {
         TVShows.map(item => (
-          <div key={item.show.id} className="cards-item">
-            <Card>
-              <CardImg src={(item.show.image && item.show.image.original) || defaultImage} alt="Card image cap" />
-              <CardBody>
-                <CardTitle>{item.show.name}</CardTitle>
-                <CardSubtitle>{item.show.type}</CardSubtitle>
-                <CardSubtitle>{item.score}</CardSubtitle>
-                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                <Link href="/p/[id]" as={`/p/${item.show.id}`}>
-                  <Button>Подробнее</Button>
-                </Link>
-              </CardBody>
-            </Card>
-          </div>
+          <Link key={item.show.id} href="/p/[id]" as={`/p/${item.show.id}`}>
+            <ListGroupItem className="justify-content-between">
+              {item.show.name + "      "}
+              <Badge pill>Rating: {item.score}</Badge>
+            </ListGroupItem>
+          </Link>
         ))
       }
-    </div>
+    </ListGroup>
 
     <style jsx>{`
       .matches-title {
@@ -46,13 +37,8 @@ const Home = ({ TVShows }) => (
         text-align: center;
         padding: 24px;
       }
-      .cards {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-      .cards-item {
-        width: 30%;
+      .list-group-item {
+        cursor: pointer !important;
       }
     `}</style>
   </Layout>

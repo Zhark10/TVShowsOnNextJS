@@ -16,12 +16,12 @@ const Home = ({ TVShows }) => (
    </div>
 
     {
-      TVShows.map(show => (
-        <Link key={show.title} href="/p/[id]" as={`/p/${show.title}`}>
-          <div className="match-item">{show.title}
-            <img src={show.thumbnail} className="match-image" />
-            
-            <a href={show.url}>подробнее</a>
+      TVShows.map(item => (
+        <Link key={item.show.id} href="/p/[id]" as={`/p/${item.show.id}`}>
+          <div className="match-item">{item.show.name}
+            <img src={item.show.image && item.show.image.original} className="match-image" />
+
+            <a href={item.url}>подробнее</a>
           </div>
         </Link>
       ))
@@ -58,7 +58,7 @@ Home.getInitialProps = async function () {
   const res = await fetch('http://api.tvmaze.com/search/shows?q=sport');
   const TVShows = await res.json();
 
-  console.log(TVShows);
+  console.log(TVShows[0].show.image.original);
 
   return { TVShows };
 };

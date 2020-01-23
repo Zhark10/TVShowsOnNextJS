@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Layout from '../components/layout'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch';
+import { Card, CardText, CardHeader, CardBody, Button } from 'reactstrap';
 
 const Home = ({ TVShows }) => (
   <Layout>
@@ -11,18 +12,21 @@ const Home = ({ TVShows }) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <div className="matches-title">
-      All matches
-   </div>
+    <div>
+      All shows
+    </div>
 
     {
       TVShows.map(item => (
         <Link key={item.show.id} href="/p/[id]" as={`/p/${item.show.id}`}>
-          <div className="match-item">{item.show.name}
-            <img src={item.show.image && item.show.image.original} className="match-image" />
-
-            <a href={item.url}>подробнее</a>
-          </div>
+          <Card>
+            <CardBody>
+              <CardHeader>Hello Next.js!</CardHeader>
+              <br />
+              <CardText>Bootstrap 4 power!</CardText>
+              <Button color="danger">OK</Button>
+            </CardBody>
+          </Card>
         </Link>
       ))
     }
@@ -34,22 +38,6 @@ const Home = ({ TVShows }) => (
         text-align: center;
         padding: 24px;
       }
-      .match-item {
-        font-size: 18px;
-        border: 1px solid rgba(0,0,0,.54);
-        margin: 4px 0;
-        padding: 24px;
-        text-align: center;
-        cursor: pointer;
-        border-radius: 12px;
-      }
-      .match-image {
-        height: 64px;
-        width: 64px;
-      }
-      .match-item:hover {
-        background-color: rgba(0,0,0,.12)
-      }
     `}</style>
   </Layout>
 )
@@ -57,9 +45,6 @@ const Home = ({ TVShows }) => (
 Home.getInitialProps = async function () {
   const res = await fetch('http://api.tvmaze.com/search/shows?q=sport');
   const TVShows = await res.json();
-
-  console.log(TVShows[0].show.image.original);
-
   return { TVShows };
 };
 

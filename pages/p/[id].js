@@ -36,7 +36,7 @@ const Show = () => {
             <CardText>Language: {show.language}</CardText>
             <CardText>Premiered: {show.premiered}</CardText>
             Time: {show.schedule.time}<br />
-            Days: {show.schedule.days.map(elem => <span>{elem},</span>)}<br />
+            Days: {show.schedule.days.map(elem => <span key={elem}>{elem},</span>)}<br />
             <Button onClick={() => window.open(show.url)}>Official site</Button>
           </CardBody>
         </Card>

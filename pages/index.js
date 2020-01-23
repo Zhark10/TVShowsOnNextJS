@@ -21,7 +21,7 @@ const Home = ({ TVShows }) => (
       {
         TVShows.map(item => (
           <Link key={item.show.id} href="/p/[id]" as={`/p/${item.show.id}`}>
-            <ListGroupItem className="justify-content-between">
+            <ListGroupItem className="justify-content-between" tag="a" href="#" action>
               {item.show.name + "      "}
               <Badge pill>Rating: {item.score}</Badge>
             </ListGroupItem>

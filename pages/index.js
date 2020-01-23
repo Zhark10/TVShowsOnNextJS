@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch';
 
-const Home = props => (
+const Home = ({ TVShows }) => (
   <Layout>
     <Head>
       <title>Home</title>
@@ -16,11 +16,12 @@ const Home = props => (
    </div>
 
     {
-      props.matches.map(match => (
-        <Link key={match.title} href="/p/[id]" as={`/p/${match.title}`}>
-          <div className="match-item">{
-            match.title}
-            <img src={match.thumbnail} className="match-image" />
+      TVShows.map(show => (
+        <Link key={show.title} href="/p/[id]" as={`/p/${show.title}`}>
+          <div className="match-item">{show.title}
+            <img src={show.thumbnail} className="match-image" />
+            
+            <a href={show.url}>подробнее</a>
           </div>
         </Link>
       ))
@@ -54,12 +55,12 @@ const Home = props => (
 )
 
 Home.getInitialProps = async function () {
-  const res = await fetch('https://www.scorebat.com/video-api/v1/');
-  const matches = await res.json();
+  const res = await fetch('http://api.tvmaze.com/search/shows?q=sport');
+  const TVShows = await res.json();
 
-  console.log(matches);
+  console.log(TVShows);
 
-  return { matches };
+  return { TVShows };
 };
 
 

@@ -8,14 +8,12 @@ const Layout = ({ children }) => (
         <Nav />
 
         <Container>
-            <Row>
-                <Col sm="12" md={{ size: 8, offset: 2 }}>{children}</Col>
-            </Row>
+            {children}
         </Container>
 
         <style jsx>{`
             .main {
-                width: 60%;
+                width: 100%;
                 margin: 0 auto;
             }
         `}</style>

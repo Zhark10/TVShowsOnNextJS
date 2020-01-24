@@ -1,26 +1,11 @@
 import React from 'react'
-import { useRouter } from 'next/router';
 import Head from 'next/head'
 import Layout from '../../components/layout'
 import { Card, CardText, CardTitle, CardBody, Button, CardSubtitle, CardImg, Jumbotron, Container } from 'reactstrap';
 const defaultImage = 'https://kardelenguzellik.com/wp-content/uploads/2016/10/orionthemes-featured-image-2.jpg';
 
-const Show = () => {
-  const [show, setShow] = React.useState(null);
-
-  const router = useRouter();
-  React.useEffect(() => {
-    const getDataByShow = async () => {
-      const res = await fetch(`http://api.tvmaze.com/shows/${router.query.id}`);
-      const TVShow = await res.json();
-      console.log(TVShow)
-      setShow(TVShow)
-    }
-    getDataByShow()
-  }, [])
-
+const Show = ({ show }) => {
   return (
-    show &&
     <Layout>
       <Head>
         <title>Current match</title>
@@ -51,5 +36,13 @@ const Show = () => {
     </Layout>
   )
 }
+
+Show.getInitialProps = async function (context) {
+  const { id } = context.query;
+  const res = await fetch(`http://api.tvmaze.com/shows/${id}`);
+  const show = await res.json();
+
+  return { show };
+};
 
 export default Show

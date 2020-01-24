@@ -20,7 +20,7 @@ const Home = ({ TVShows }) => (
     <ListGroup>
       {
         TVShows.map(item => (
-          <Link key={item.show.id} href="/p/[id]" as={`/p/${item.show.id}`}>
+          <Link key={item.show.id} href="/show/[id]" as={`/show/${item.show.id}`}>
             <ListGroupItem className="justify-content-between" tag="a" href="#" action>
               {item.show.name + "      "}
               <Badge pill>Rating: {item.score}</Badge>
@@ -48,7 +48,6 @@ Home.getInitialProps = async function () {
   const res = await fetch('http://api.tvmaze.com/search/shows?q=sport');
   const TVShows = await res.json();
 
-  console.log(TVShows)
   return { TVShows };
 };
 

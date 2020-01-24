@@ -15,6 +15,7 @@ const Layout = ({ children }) => (
             .main {
                 width: 100%;
                 margin: 0 auto;
+                padding-bottom: 64px
             }
         `}</style>
     </div>

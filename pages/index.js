@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../components/layout';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 import { Jumbotron, Badge, ListGroupItem, ListGroup } from 'reactstrap';
+import Layout from '../components/layout';
 
 const Home = ({ TVShows }) => (
   <Layout>
@@ -20,7 +20,7 @@ const Home = ({ TVShows }) => (
             href="#"
             action
           >
-            {item.show.name + '      '}
+            {`${item.show.name}      `}
             <Badge pill>Rating: {item.score}</Badge>
           </ListGroupItem>
         </Link>
@@ -41,6 +41,7 @@ const Home = ({ TVShows }) => (
   </Layout>
 );
 
+// eslint-disable-next-line func-names
 Home.getInitialProps = async function() {
   const res = await fetch('http://api.tvmaze.com/search/shows?q=sport');
   const TVShows = await res.json();

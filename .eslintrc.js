@@ -1,6 +1,8 @@
 module.exports = {
   env: {
+    jest: true,
     browser: true,
+    node: true,
     es6: true,
   },
   parser: 'babel-eslint',
@@ -23,10 +25,5 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/forbid-prop-types': [0, { forbid: ['any'] }],
     'react/prop-types': 0,
-  },
-  env: {
-    jest: true,
-    browser: true,
-    node: true,
   },
 };

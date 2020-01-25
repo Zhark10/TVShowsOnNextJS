@@ -1,14 +1,14 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 
 const Nav = () => (
   <nav>
     <ul>
       <div>
         <Link href="/">
-          <a>go to home</a>
+          <div>go to home</div>
         </Link>
-      </div> 
+      </div>
     </ul>
 
     <style jsx>{`
@@ -21,11 +21,11 @@ const Nav = () => (
       }
       ul div {
         font-size: 24px;
-        color: rgba(0,0,0,0.54);
+        color: rgba(0, 0, 0, 0.54);
         text-decoration: none;
       }
     `}</style>
   </nav>
-)
+);
 
-export default Nav
+export default Nav;

@@ -1,17 +1,12 @@
 import React from 'react'
-import Head from 'next/head'
 import Layout from '../../components/layout'
 import { Card, CardText, CardTitle, CardBody, Button, CardSubtitle, CardImg, Jumbotron, Container } from 'reactstrap';
 const defaultImage = 'https://kardelenguzellik.com/wp-content/uploads/2016/10/orionthemes-featured-image-2.jpg';
 
 const Show = ({ show }) => {
+  const showMoreInfo = React.useCallback(() => window.open(show.url), [show.url])
   return (
     <Layout>
-      <Head>
-        <title>Current match</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <div className="show-content">
         <Card>
           <CardImg src={(show.image && show.image.original) || defaultImage} alt="Card image cap" />
@@ -22,7 +17,7 @@ const Show = ({ show }) => {
             <CardText>Premiered: {show.premiered}</CardText>
             Time: {show.schedule.time}<br />
             Days: {show.schedule.days.map(elem => <span key={elem}>{elem},</span>)}<br />
-            <Button onClick={() => window.open(show.url)}>Official site</Button>
+            <Button onClick={showMoreInfo}>Official site</Button>
           </CardBody>
         </Card>
       </div>

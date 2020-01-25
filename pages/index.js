@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import Layout from '../components/layout'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch';
@@ -7,11 +6,6 @@ import { Jumbotron, Badge, ListGroupItem, ListGroup } from 'reactstrap';
 
 const Home = ({ TVShows }) => (
   <Layout>
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-
     <Jumbotron>
       <h1 className="display-3">All shows</h1>
       <p className="lead">here are all the sports TV-shows</p>

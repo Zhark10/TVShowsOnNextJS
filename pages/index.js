@@ -1,6 +1,6 @@
-import React from 'react'
-import Layout from '../components/layout'
-import Link from 'next/link'
+import React from 'react';
+import Layout from '../components/layout';
+import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 import { Jumbotron, Badge, ListGroupItem, ListGroup } from 'reactstrap';
 
@@ -12,16 +12,19 @@ const Home = ({ TVShows }) => (
     </Jumbotron>
 
     <ListGroup>
-      {
-        TVShows.map(item => (
-          <Link key={item.show.id} href="/show/[id]" as={`/show/${item.show.id}`}>
-            <ListGroupItem className="justify-content-between" tag="a" href="#" action>
-              {item.show.name + "      "}
-              <Badge pill>Rating: {item.score}</Badge>
-            </ListGroupItem>
-          </Link>
-        ))
-      }
+      {TVShows.map(item => (
+        <Link key={item.show.id} href="/show/[id]" as={`/show/${item.show.id}`}>
+          <ListGroupItem
+            className="justify-content-between"
+            tag="a"
+            href="#"
+            action
+          >
+            {item.show.name + '      '}
+            <Badge pill>Rating: {item.score}</Badge>
+          </ListGroupItem>
+        </Link>
+      ))}
     </ListGroup>
 
     <style jsx>{`
@@ -36,14 +39,13 @@ const Home = ({ TVShows }) => (
       }
     `}</style>
   </Layout>
-)
+);
 
-Home.getInitialProps = async function () {
+Home.getInitialProps = async function() {
   const res = await fetch('http://api.tvmaze.com/search/shows?q=sport');
   const TVShows = await res.json();
 
   return { TVShows };
 };
 
-
-export default Home
+export default Home;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from './nav';
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = ({ children }) => (

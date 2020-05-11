@@ -2,6 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 import { Jumbotron, Badge, ListGroupItem, ListGroup } from 'reactstrap';
+import AwesomeDebouncePromise from 'awesome-debounce-promise';
+import useConstant from 'use-constant';
+import { useAsync } from 'react-async-hook';
 import Layout from '../components/layout';
 
 class Home extends React.Component {
@@ -11,6 +14,27 @@ class Home extends React.Component {
 
     return { TVShows };
   }
+
+  useDebouncedSearch = searchFunction => {
+    const [inputText, setInputText] = React.useState('');
+
+    const debouncedSearchFunction = useConstant(() =>
+      AwesomeDebouncePromise(searchFunction, 300),
+    );
+
+    const searchResults = useAsync(async () => {
+      if (inputText.length === 0) {
+        return [];
+      }
+      return debouncedSearchFunction(inputText);
+    }, [debouncedSearchFunction, inputText]);
+
+    return {
+      inputText,
+      setInputText,
+      searchResults,
+    };
+  };
 
   render() {
     const { TVShows } = this.props;

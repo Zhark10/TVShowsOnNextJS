@@ -23,6 +23,7 @@ const Nav = () => (
         font-size: 24px;
         color: rgba(0, 0, 0, 0.54);
         text-decoration: none;
+        cursor: pointer;
       }
     `}</style>
   </nav>

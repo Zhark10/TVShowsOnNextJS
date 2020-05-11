@@ -11,14 +11,17 @@
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "awesome-debounce-promise": "^2.1.0",
     "bootstrap": "^4.4.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "isomorphic-unfetch": "^3.0.0",
     "lodash.get": "^4.4.2",
     "next": "9.1.7",
     "react": "16.12.0",
+    "react-async-hook": "^3.6.1",
     "react-dom": "16.12.0",
-    "reactstrap": "^8.4.0"
+    "reactstrap": "^8.4.0",
+    "use-constant": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",

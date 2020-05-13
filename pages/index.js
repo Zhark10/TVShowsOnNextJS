@@ -2,32 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 import { Jumbotron, Badge, ListGroupItem, ListGroup, Input } from 'reactstrap';
-import AwesomeDebouncePromise from 'awesome-debounce-promise';
-import useConstant from 'use-constant';
-import { useAsync } from 'react-async-hook';
 import Layout from '../components/layout';
+import { useDebouncedSearch } from '../utils/hooks/useDebouncedSearch';
 
 const Home = ({ TVShows }) => {
-  const useDebouncedSearch = searchFunction => {
-    const [inputText, setInputText] = React.useState('');
-
-    const debouncedSearchFunction = useConstant(() =>
-      AwesomeDebouncePromise(searchFunction, 300),
-    );
-
-    const searchResults = useAsync(async () => {
-      if (inputText.length === 0) {
-        return [];
-      }
-      return debouncedSearchFunction(inputText);
-    }, [debouncedSearchFunction, inputText]);
-
-    return {
-      inputText,
-      setInputText,
-      searchResults,
-    };
-  };
+  const { inputText, setInputText, searchResults } = useDebouncedSearch();
 
   return (
     <Layout>
@@ -36,7 +15,7 @@ const Home = ({ TVShows }) => {
         <p className="lead">here are all the sports TV-shows</p>
       </Jumbotron>
 
-      <Input placeholder="category" />
+      <Input placeholder="category" onChange={setInputText} value={inputText} />
 
       <ListGroup>
         {TVShows.map(item => (

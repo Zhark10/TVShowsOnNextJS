@@ -6,8 +6,17 @@ import Layout from '../components/layout';
 import { useDebouncedSearch } from '../utils/hooks/useDebouncedSearch';
 
 const Home = ({ TVShows }) => {
-  const { inputText, setInputText, searchResults } = useDebouncedSearch();
+  const func = text => {
+    (async () => {
+      const res = await fetch(`http://api.tvmaze.com/search/shows?q=${text}`);
+      const shows = await res.json();
+      return { shows };
+    })();
+  };
 
+  const { inputText, setInputText, searchResults } = useDebouncedSearch(func);
+
+  console.log(searchResults)
   return (
     <Layout>
       <Jumbotron>
@@ -15,7 +24,7 @@ const Home = ({ TVShows }) => {
         <p className="lead">here are all the sports TV-shows</p>
       </Jumbotron>
 
-      <Input placeholder="category" onChange={setInputText} value={inputText} />
+      <Input placeholder="category" onChange={(e) => setInputText(e.target.value)} />
 
       <ListGroup>
         {TVShows.map(item => (

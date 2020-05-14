@@ -1,31 +1,31 @@
 import React from 'react';
 import Link from 'next/link';
+import Colors from '../utils/colors';
 
 const Nav = () => (
-  <nav>
-    <ul>
-      <div>
-        <Link href="/">
-          <div>go to home</div>
-        </Link>
+  <nav
+    style={{
+      position: 'fixed',
+      width: '100vw',
+      height: 54,
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: Colors.secondaryColor.light12,
+    }}
+  >
+    <Link href="/">
+      <div
+        style={{
+          color: Colors.secondaryColor.light54,
+          fontSize: 24,
+          fontWeight: 700,
+          paddingLeft: 16,
+          cursor: 'pointer',
+        }}
+      >
+        go to home
       </div>
-    </ul>
-
-    <style jsx>{`
-      ul {
-        width: 100%;
-        height: 50px;
-        background-color: #e9ecef;
-        display: flex;
-        align-items: center;
-      }
-      ul div {
-        font-size: 24px;
-        color: rgba(0, 0, 0, 0.54);
-        text-decoration: none;
-        cursor: pointer;
-      }
-    `}</style>
+    </Link>
   </nav>
 );
 

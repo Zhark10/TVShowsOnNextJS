@@ -4,6 +4,7 @@ import { Jumbotron, Badge, ListGroupItem, ListGroup, Input } from 'reactstrap';
 import Layout from '../components/layout';
 import { useDebouncedSearch } from '../utils/hooks/useDebouncedSearch';
 import { ShowService } from '../service/get-shows';
+import Colors from '../utils/colors';
 
 const Home = ({ TVShows }) => {
   const { inputText, setInputText, searchResults } = useDebouncedSearch(
@@ -14,7 +15,12 @@ const Home = ({ TVShows }) => {
   const shows = searchResults.result || TVShows;
   return (
     <Layout>
-      <Jumbotron>
+      <Jumbotron
+        style={{
+          backgroundColor: Colors.mainColor.dark87,
+          color: Colors.secondaryColor.light0,
+        }}
+      >
         <h1 className="display-4">Category: {category.toUpperCase()}?</h1>
         <p className="lead">here are all TV-shows by category</p>
       </Jumbotron>
@@ -43,18 +49,6 @@ const Home = ({ TVShows }) => {
           </Link>
         ))}
       </ListGroup>
-
-      <style jsx>{`
-        .matches-title {
-          font-size: 24px;
-          font-weight: 700;
-          text-align: center;
-          padding: 24px;
-        }
-        .list-group-item {
-          cursor: pointer !important;
-        }
-      `}</style>
     </Layout>
   );
 };

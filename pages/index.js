@@ -3,20 +3,20 @@ import Link from 'next/link';
 import { Jumbotron, Badge, ListGroupItem, ListGroup, Input } from 'reactstrap';
 import Layout from '../components/layout';
 import { useDebouncedSearch } from '../utils/hooks/useDebouncedSearch';
-import getShows from '../service/get-shows';
+import { ShowService } from '../service/get-shows';
 
 const Home = ({ TVShows }) => {
   const { inputText, setInputText, searchResults } = useDebouncedSearch(
-    await getShows(),
+    ShowService.getShows,
   );
 
-  console.log(searchResults)
-
+  const category = inputText || 'SPORT';
+  const shows = searchResults.result || TVShows;
   return (
     <Layout>
       <Jumbotron>
-        <h1 className="display-3">All shows</h1>
-        <p className="lead">here are all the sports TV-shows</p>
+        <h1 className="display-4">Category: {category.toUpperCase()}?</h1>
+        <p className="lead">here are all TV-shows by category</p>
       </Jumbotron>
 
       <Input
@@ -25,7 +25,7 @@ const Home = ({ TVShows }) => {
       />
 
       <ListGroup>
-        {TVShows.map(item => (
+        {shows.map(item => (
           <Link
             key={item.show.id}
             href="/show/[id]"
@@ -59,6 +59,6 @@ const Home = ({ TVShows }) => {
   );
 };
 
-Home.getInitialProps = async () => ({ TVShows: await getShows() });
+Home.getInitialProps = ShowService.initShow;
 
 export default Home;

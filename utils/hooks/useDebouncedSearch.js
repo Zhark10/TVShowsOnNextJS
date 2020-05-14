@@ -15,7 +15,8 @@ export const useDebouncedSearch = searchFunction => {
     if (inputText.length === 0) {
       return [];
     }
-    return debouncedSearchFunction(inputText);
+    const response = await debouncedSearchFunction(inputText);
+    return response;
   }, [debouncedSearchFunction, inputText]);
 
   return {

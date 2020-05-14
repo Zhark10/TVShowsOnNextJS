@@ -17,6 +17,7 @@ const Home = ({ TVShows }) => {
     <Layout>
       <Jumbotron
         style={{
+          marginBottom: 12,
           backgroundColor: Colors.mainColor.dark87,
           color: Colors.secondaryColor.light0,
         }}

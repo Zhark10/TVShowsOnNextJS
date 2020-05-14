@@ -13,7 +13,13 @@ const Layout = ({ children }) => (
   >
     <Nav />
 
-    <Container>{children}</Container>
+    <Container
+      style={{
+        paddingTop: 64,
+      }}
+    >
+      {children}
+    </Container>
 
     <style jsx>{`
       body {

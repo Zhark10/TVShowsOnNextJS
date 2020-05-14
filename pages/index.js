@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
 import { Jumbotron, Badge, ListGroupItem, ListGroup, Input } from 'reactstrap';
 import Layout from '../components/layout';
 import { useDebouncedSearch } from '../utils/hooks/useDebouncedSearch';
@@ -8,8 +7,10 @@ import getShows from '../service/get-shows';
 
 const Home = ({ TVShows }) => {
   const { inputText, setInputText, searchResults } = useDebouncedSearch(
-    getShows,
+    await getShows(),
   );
+
+  console.log(searchResults)
 
   return (
     <Layout>
@@ -58,11 +59,6 @@ const Home = ({ TVShows }) => {
   );
 };
 
-Home.getInitialProps = async () => {
-  const res = await fetch('http://api.tvmaze.com/search/shows?q=sport');
-  const TVShows = await res.json();
-
-  return { TVShows };
-};
+Home.getInitialProps = async () => ({ TVShows: await getShows() });
 
 export default Home;

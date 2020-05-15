@@ -2,7 +2,7 @@ import React from 'react';
 
 const useExampleText = inputChangeFunction => {
   const inputRef = React.useRef(null);
-  const initialText = 'IT';
+  const initialText = 'Sport news';
   const [wordIndex, setWordIndex] = React.useState(0);
 
   React.useEffect(() => {
@@ -11,7 +11,7 @@ const useExampleText = inputChangeFunction => {
         const text = initialText.slice(0, wordIndex);
         inputChangeFunction(text);
         setWordIndex(current => current + 1);
-      }, 500);
+      }, 100);
       return () => clearTimeout(interval);
     }
     return () => {};

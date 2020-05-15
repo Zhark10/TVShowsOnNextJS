@@ -13,7 +13,7 @@ const Home = ({ TVShows }) => {
   );
   const inputRef = useExampleText(setInputText);
 
-  const category = inputText || 'SPORT';
+  const category = inputText || 'SOME TEXT';
   const shows = searchResults.result || TVShows;
   return (
     <Layout>

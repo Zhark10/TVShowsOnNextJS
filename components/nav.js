@@ -12,21 +12,20 @@ const Nav = () => {
         position: 'fixed',
         width: '100vw',
         height: 54,
-        display: 'flex',
         alignItems: 'center',
-        backgroundColor: Colors.secondaryColor.light87,
+        backgroundColor: Colors.mainColor.dark0,
+        display: isMain ? 'none' : 'flex',
         zIndex: 999,
       }}
     >
       <Link href="/">
         <div
           style={{
-            color: Colors.mainColor.dark54,
+            color: Colors.secondaryColor.light0,
             fontSize: 24,
             fontWeight: 700,
             paddingLeft: 16,
             cursor: 'pointer',
-            display: isMain ? 'none' : 'flex',
           }}
         >
           go to home

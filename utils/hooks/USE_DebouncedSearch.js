@@ -1,10 +1,9 @@
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import useConstant from 'use-constant';
 import { useAsync } from 'react-async-hook';
 
-export const useDebouncedSearch = searchFunction => {
+const useDebouncedSearch = searchFunction => {
   const [inputText, setInputText] = React.useState('');
 
   const debouncedSearchFunction = useConstant(() =>
@@ -25,3 +24,5 @@ export const useDebouncedSearch = searchFunction => {
     searchResults,
   };
 };
+
+export default useDebouncedSearch;

@@ -1,31 +1,17 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Jumbotron, Badge, ListGroupItem, ListGroup, Input } from 'reactstrap';
 import Layout from '../components/layout';
-import { useDebouncedSearch } from '../utils/hooks/useDebouncedSearch';
+import useDebouncedSearch from '../utils/hooks/USE_DebouncedSearch';
+import useExampleText from '../utils/hooks/USE_ExampleText';
 import { ShowService } from '../service/get-shows';
 import Colors from '../utils/colors';
 
 const Home = ({ TVShows }) => {
-  const inputRef = useRef(null);
   const { inputText, setInputText, searchResults } = useDebouncedSearch(
     ShowService.getShows,
   );
-
-  const initialText = 'IT';
-  const [wordIndex, setWordIndex] = React.useState(0);
-
-  useEffect(() => {
-    if (inputRef.current && wordIndex <= initialText.length) {
-      const interval = setTimeout(() => {
-        const text = initialText.slice(0, wordIndex);
-        setInputText(text);
-        setWordIndex(current => current + 1);
-      }, 500);
-      return () => clearTimeout(interval);
-    }
-    return () => {};
-  }, [inputRef, wordIndex]);
+  const inputRef = useExampleText(setInputText);
 
   const category = inputText || 'SPORT';
   const shows = searchResults.result || TVShows;

@@ -9,6 +9,7 @@ import {
   CardImg,
 } from 'reactstrap';
 import Layout from '../../components/layout';
+import { ShowService } from '../../service/get-shows';
 
 const defaultImage =
   'https://kardelenguzellik.com/wp-content/uploads/2016/10/orionthemes-featured-image-2.jpg';
@@ -52,12 +53,8 @@ const Show = ({ show }) => {
   );
 };
 
-// eslint-disable-next-line func-names
-Show.getInitialProps = async function(context) {
-  const { id } = context.query;
-  const res = await fetch(`http://api.tvmaze.com/shows/${id}`);
-  const show = await res.json();
-
+Show.getInitialProps = async ({ query: { id } }) => {
+  const show = await ShowService.getShowById(id);
   return { show };
 };
 

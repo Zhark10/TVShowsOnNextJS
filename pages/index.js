@@ -12,15 +12,14 @@ const Home = ({ TVShows }) => {
     ShowService.getShows,
   );
 
-  const initialText = 'sport';
+  const initialText = 'IT';
   const [wordIndex, setWordIndex] = React.useState(0);
 
   useEffect(() => {
-    if (inputRef.current && wordIndex < 6) {
+    if (inputRef.current && wordIndex <= initialText.length) {
       const interval = setTimeout(() => {
         const text = initialText.slice(0, wordIndex);
         setInputText(text);
-        inputRef.current.value = text;
         setWordIndex(current => current + 1);
       }, 500);
       return () => clearTimeout(interval);
@@ -45,6 +44,7 @@ const Home = ({ TVShows }) => {
 
       <Input
         ref={inputRef}
+        value={inputText}
         placeholder="category"
         onChange={e => setInputText(e.target.value)}
       />

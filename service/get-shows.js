@@ -7,9 +7,16 @@ const getShows = async (text = 'sport') => {
   return TVShows;
 };
 
+const getShowById = async showId => {
+  const res = await fetch(`http://api.tvmaze.com/shows/${showId}`);
+  const show = await res.json();
+  return show;
+};
+
 const initShow = async () => ({ TVShows: await getShows() });
 
 export const ShowService = {
-  getShows,
   initShow,
+  getShows,
+  getShowById,
 };

@@ -11,6 +11,13 @@ const Home = ({ TVShows }) => {
   const { inputText, setInputText, searchResults } = useDebouncedSearch(
     ShowService.getShows,
   );
+
+  React.useEffect(() => {
+    if (inputText.length > 15) {
+      setInputText('Ты нафиг все сломал');
+    }
+  }, [inputText, setInputText]);
+
   const inputRef = useExampleText(setInputText);
 
   const category = inputText || 'SOME TEXT';

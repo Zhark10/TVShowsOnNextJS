@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Jumbotron, Badge, ListGroupItem, ListGroup, Input } from 'reactstrap';
 import Layout from '../components/layout';
@@ -7,9 +7,26 @@ import { ShowService } from '../service/get-shows';
 import Colors from '../utils/colors';
 
 const Home = ({ TVShows }) => {
+  const inputRef = useRef(null);
   const { inputText, setInputText, searchResults } = useDebouncedSearch(
     ShowService.getShows,
   );
+
+  const initialText = 'sport';
+  const [wordIndex, setWordIndex] = React.useState(0);
+
+  useEffect(() => {
+    if (inputRef.current && wordIndex < 6) {
+      const interval = setTimeout(() => {
+        const text = initialText.slice(0, wordIndex);
+        setInputText(text);
+        inputRef.current.value = text;
+        setWordIndex(current => current + 1);
+      }, 500);
+      return () => clearTimeout(interval);
+    }
+    return () => {};
+  }, [inputRef, wordIndex]);
 
   const category = inputText || 'SPORT';
   const shows = searchResults.result || TVShows;
@@ -27,6 +44,7 @@ const Home = ({ TVShows }) => {
       </Jumbotron>
 
       <Input
+        ref={inputRef}
         placeholder="category"
         onChange={e => setInputText(e.target.value)}
       />

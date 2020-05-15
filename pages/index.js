@@ -4,6 +4,7 @@ import { Jumbotron, Badge, ListGroupItem, ListGroup, Input } from 'reactstrap';
 import Layout from '../components/layout';
 import useDebouncedSearch from '../utils/hooks/USE_DebouncedSearch';
 import useExampleText from '../utils/hooks/USE_ExampleText';
+import useCheckErrors from '../utils/hooks/USE_CheckErrors';
 import { ShowService } from '../service/get-shows';
 import Colors from '../utils/colors';
 
@@ -12,36 +13,8 @@ const Home = ({ TVShows }) => {
     ShowService.getShows,
   );
 
-  const [errorIndex, setErrorIndex] = React.useState(-1);
-  const errorMessages = [
-    'F#CK! Too many letters!',
-    'Don`t do this anymore please!',
-  ];
-
-  React.useEffect(() => {
-    if (inputText && inputText.length > 15) {
-      const timeout = setTimeout(() => {
-        setErrorIndex(current => current + 1);
-      }, 2000);
-      return () => clearTimeout(timeout);
-    }
-    return () => {};
-  }, [inputText]);
-
-  React.useEffect(() => {
-    if (
-      inputText &&
-      inputText.length > 15 &&
-      errorIndex <= errorMessages.length - 1
-    ) {
-      setInputText(errorMessages[errorIndex]);
-    } else {
-      setErrorIndex(-1);
-      setInputText('');
-    }
-  }, [errorIndex]);
-
   const inputRef = useExampleText(setInputText);
+  useCheckErrors(inputText);
 
   const category = inputText || 'SOME TEXT';
   const shows = searchResults.result || TVShows;

@@ -12,11 +12,34 @@ const Home = ({ TVShows }) => {
     ShowService.getShows,
   );
 
+  const [errorIndex, setErrorIndex] = React.useState(-1);
+  const errorMessages = [
+    'F#CK! Too many letters!',
+    'Don`t do this anymore please!',
+  ];
+
   React.useEffect(() => {
-    if (inputText.length > 15) {
-      setInputText('Ты нафиг все сломал');
+    if (inputText && inputText.length > 15) {
+      const timeout = setTimeout(() => {
+        setErrorIndex(current => current + 1);
+      }, 2000);
+      return () => clearTimeout(timeout);
     }
-  }, [inputText, setInputText]);
+    return () => {};
+  }, [inputText]);
+
+  React.useEffect(() => {
+    if (
+      inputText &&
+      inputText.length > 15 &&
+      errorIndex <= errorMessages.length - 1
+    ) {
+      setInputText(errorMessages[errorIndex]);
+    } else {
+      setErrorIndex(-1);
+      setInputText('');
+    }
+  }, [errorIndex]);
 
   const inputRef = useExampleText(setInputText);
 
@@ -31,7 +54,7 @@ const Home = ({ TVShows }) => {
           color: Colors.secondaryColor.light0,
         }}
       >
-        <h1 className="display-4">Category: {category.toUpperCase()}?</h1>
+        <h1 className="display-4">Category: {category.toUpperCase()}...</h1>
         <p className="lead">here are all TV-shows by category</p>
       </Jumbotron>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const useCheckErrors = inputText => {
+const useCheckErrors = (inputText, setInputText) => {
   const [errorIndex, setErrorIndex] = React.useState(-1);
   const errorMessages = [
     'F#CK! Too many letters!',
@@ -18,12 +18,17 @@ const useCheckErrors = inputText => {
   }, [inputText]);
 
   React.useEffect(() => {
-    if (errorIndex <= errorMessages.length - 1) {
+    if (
+      inputText &&
+      inputText.length > 15 &&
+      errorIndex <= errorMessages.length - 1
+    ) {
+      setInputText(errorMessages[errorIndex]);
+    } else {
       setErrorIndex(-1);
+      setInputText('');
     }
   }, [errorIndex]);
-
-  return errorMessages[errorIndex];
 };
 
 export default useCheckErrors;

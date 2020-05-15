@@ -14,7 +14,7 @@ const Home = ({ TVShows }) => {
   );
 
   const inputRef = useExampleText(setInputText);
-  useCheckErrors(inputText);
+  useCheckErrors(inputText, setInputText);
 
   const category = inputText || 'SOME TEXT';
   const shows = searchResults.result || TVShows;
